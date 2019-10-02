@@ -50,13 +50,13 @@ defmodule HttpApi.Resources.Matches do
     put_matches_in_private_results(conn, matches)
   end
 
-  # Wraps the Match list in a Matches Struct and assigns a private key and value
-  # in the connection so the data can be processed further in the plug pipeline.
+  # Wraps the Match list in a Matches Struct and assigns a private field in
+  # the connection so the data can be processed further in the plug pipeline.
   defp put_matches_in_private_results(conn, matches) do
     Plug.Conn.put_private(conn, :results, Protobuf.Matches.new(matches: matches))
   end
 
-  # Function plug to sort the matches by date when "date" key-value is found in the query_params.
+  # Function plug to sort the matches by date when "date" field is found in the query_params.
   # Only two values are accepted: "asc" or "desc"; otherwise sends a 400 response.
   defp sort_by_date(%{query_params: %{"date" => sort_order}} = conn, _)
        when sort_order not in ["asc", "desc"] do
@@ -83,6 +83,6 @@ defmodule HttpApi.Resources.Matches do
     put_matches_in_private_results(conn, Enum.sort_by(matches, &mapper.(&1), sorter))
   end
 
-  # Catch-all definition that will act as a default fallback clause.
+  # Catch-all definition for when there is not "date" field.
   defp sort_by_date(conn, _), do: conn
 end

@@ -1,6 +1,6 @@
 defmodule HttpApi.ApiRouter do
   @moduledoc """
-  Main router that forwards requests to the different resource plugs.
+  Main router that forwards requests to different resource plugs.
   With exception to a particular resource, all responses are in JSON.
   """
 
@@ -21,7 +21,7 @@ defmodule HttpApi.ApiRouter do
     Helpers.send_json_resp(conn, 200, %{"endpoints" => ["matches", "match-filters"]})
   end
 
-  # Forwards requests to appropriate resource plugs.
+  # Forwards requests to the appropriate resource plug.
   get("/matches", to: HttpApi.Resources.Matches)
   get("/match-filters", to: HttpApi.Resources.MatchFilters)
 

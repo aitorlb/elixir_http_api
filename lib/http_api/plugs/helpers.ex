@@ -18,6 +18,7 @@ defmodule HttpApi.Plugs.Helpers do
 
   defmodule ResourceBuilder do
     @moduledoc "Conveniences for building resource plugs."
+
     defmacro __using__(_) do
       quote do
         # Allows to build a plug pipeline.

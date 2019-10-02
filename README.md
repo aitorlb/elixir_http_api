@@ -2,14 +2,14 @@
 
 Simple Elixir application that exposes a public HTTP API and serves football results from a CSV.
 
-### Available resources
+**Available resources**
 
 | Resource | Action | URI | Filters | Documentation |
 | --- | --- | --- | --- |:---:|
 | match | List all matches. | /matches | league&season <br>date | [Open](docs/API.md#match-collection) |
 | match-filter | List all filters<br>for which there are<br>matches available. | /match-filters |  | [Open](docs/API.md#match-filter-collection) |
 
-### Filters and their data types
+**Filters and their data types**
 
 | Filter | Type | Description / Possible values |
 | --- | --- | --- |
